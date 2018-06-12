@@ -144,7 +144,7 @@ class SelectorDIC(ModelSelector):
         try: # try for best model with best DIC score
             for n in range(self.min_n_components, self.max_n_components + 1):
                 dic_score, model = self.dic_score(n)
-                if dic_score < best_score:
+                if dic_score > best_score:
                     best_score, best_model = dic_score, model
             return best_model
         except: # return base model
@@ -190,7 +190,7 @@ class SelectorCV(ModelSelector):
         try: # try for best model with best CV score
             for n in range(self.min_n_components, self.max_n_components + 1):
                 cv_score, model = self.cv_score(n)
-                if cv_score < best_score:
+                if cv_score > best_score:
                     best_score, best_model = cv_score, model
             return best_model
         except: # return base model
